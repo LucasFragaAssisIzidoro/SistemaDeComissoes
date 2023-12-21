@@ -1,0 +1,26 @@
+@import 'estilos.css';
+header {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 2px 0 black;
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
+}
+
+
+a{
+    font-size: 20px;
+    font-weight: bolder;
+    margin: 2px;
+}
+
+.navbar-nav ul li{
+display: inline-block;
+min-inline-size: 230px;
+}
+
+.logo{
+    margin:0% auto;
+}
