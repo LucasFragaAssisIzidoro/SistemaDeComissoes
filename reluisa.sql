@@ -10,5 +10,10 @@ create table usuario (
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+create table produtos (
+    id_produto INT AUTO_INCREMENT PRIMARY KEY, 
+    cod_produto INT UNIQUE, 
+    categoria VARCHAR(255)
+);
 
 
