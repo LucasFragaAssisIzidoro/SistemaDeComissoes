@@ -19,7 +19,7 @@
                                     <i class="fa fa-archive"></i>
                                 </div>
                                 <div class="feature-content">
-                                    <h5>Gerenciar estoque</h5>
+                                    <h5>Estoque</h5>
                                 </div>
                             </div>
                         </a>
@@ -32,7 +32,7 @@
                                     <i class="fa fa-graduation-cap"></i>
                                 </div>
                                 <div class="feature-content">
-                                    <h5>Gerenciar Turmas</h5>
+                                    <h5>Fornecedores</h5>
                                 </div>
 
                             </div>
@@ -45,7 +45,7 @@
                                     <i class="fa fa-id-card-o"></i>
                                 </div>
                                 <div class="feature-content">
-                                    <h5>Gerenciar professores</h5>
+                                    <h5>Vendedoras</h5>
                                 </div>
                             </div>
                         </a>
@@ -57,7 +57,7 @@
                                     <i class="fa fa-calendar-o"></i>
                                 </div>
                                 <div class="feature-content">
-                                    <h5>Calendário</h5>
+                                    <h5>Bolsas</h5>
                                 </div>
                             </div>
                         </a>
@@ -69,7 +69,7 @@
                                     <i class="fa fa-user-plus"></i>
                                 </div>
                                 <div class="feature-content">
-                                    <h5>Cadastrar Usuários</h5>
+                                    <h5>Vendas</h5>
                                 </div>
                             </div>
                         </a>
@@ -81,7 +81,7 @@
                                     <i class="fa fa-users"></i>
                                 </div>
                                 <div class="feature-content">
-                                    <h5>Cadrastar turmas</h5>
+                                    <h5>Gerar relatórios</h5>
                                 </div>
                             </div>
                         </a>

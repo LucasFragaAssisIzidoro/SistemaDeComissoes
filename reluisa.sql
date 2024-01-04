@@ -15,5 +15,9 @@ create table produtos (
     cod_produto INT UNIQUE, 
     categoria VARCHAR(255)
 );
+create table mercadoria (
+    cod_produto int fk,
+
+)
 
 
