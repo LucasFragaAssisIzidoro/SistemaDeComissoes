@@ -2,7 +2,7 @@
 
 <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script src="/reluisa/public/js/erros.js"></script>
+    <script src="/reluisa/public/js/tratamentoErros.js"></script>
    
 <body>
     <?php echo Sessao::mensagem('estoque'); ?>
@@ -36,16 +36,16 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="<?=URL?>/estoques/cadastrarmercadoria" method="post">
+                                <form action="<?=URL?>/estoques/cadastrarmercadoria" method="post" id="cadastrarMercadoria">
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <label class="text-left">Código do produto</label>
-                                            <input type="text" class="form-control is-invalid float-right" id="cod_mercadoria" name="cod_mercadoria"
+                                            <label for="cod_mercadoria" class="text-left">Código do produto</label>
+                                            <input type="text" class="form-control" id="cod_mercadoria" name="cod_mercadoria"
                                                 placeholder="Digite o código do produto" required>
-                                                <span class="invalid-feedback" id="mensagemErro">GENTE</span>
+                                                <span class="invalid-feedback" id="mensagemErro"></span>
                                         </div>
                                         <div class="form-group">
-                                            <label for="unit">Categoria</label>
+                                            <label for="categoria_mercadoria">Categoria</label>
                                             <select name="categoria_mercadoria" id="categoria_mercadoria" class="form-control" required>
                                                 <option value="" disabled selected>Selecione a categoria</option>
                                                 <option value="meia">meia</option>

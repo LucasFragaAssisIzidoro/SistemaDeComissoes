@@ -1,5 +1,6 @@
 <header>
     <link rel="stylesheet" href="/reluisa/public/css/topo.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <?php if (isset($_SESSION['usuario_id'])): ?>
         <div class="container">

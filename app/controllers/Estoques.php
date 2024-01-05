@@ -19,7 +19,7 @@ class Estoques extends Controller{
             $codigoExistente = $this->estoqueModel->verificarCodigoExistente($codMercadoria);
     
             if ($codigoExistente) {
-               http_response_code(400);
+               http_response_code(401);
                echo json_encode(['error' => 'Código em uso!']);
                exit;
 
@@ -31,9 +31,8 @@ class Estoques extends Controller{
             }elseif(!is_string($categoriaMercadoria)){
                 http_response_code(400);
                 echo json_encode(['error' => 'Formato inválido!']);
-            }
-            
-            else {
+                exit;
+            }else {
             
                 $dados = [
                     'cod_mercadoria' => $codMercadoria,
