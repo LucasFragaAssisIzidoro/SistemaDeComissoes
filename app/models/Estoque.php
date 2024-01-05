@@ -5,19 +5,19 @@ class Estoque{
     public function __construct(){
             $this->db = new Database();
     }
-    public function cadastrarprod($dados){
-        $this->db->query("INSERT INTO produtos(cod_produto, categoria) VALUES (:cod_produto, :categoria)");
-        $this->db->bind(":cod_produto", $dados['codeproduct']);
-        $this->db->bind(":categoria", $dados['category']);
+    public function cadastrarmercadoria($dados){
+        $this->db->query("INSERT INTO mercadorias(cod_mercadoria, categoria_mercadoria) VALUES (:cod_mercadoria, :categoria_mercadoria)");
+        $this->db->bind(":cod_mercadoria", $dados['cod_mercadoria']);
+        $this->db->bind(":categoria_mercadoria", $dados['categoria_mercadoria']);
         if($this->db->executa()){
             return true;
         }else{
             return false;
         }
     }
-    public function verificarCodigoExistente($codeProduct){
-        $this->db->query("SELECT cod_produto FROM produtos WHERE cod_produto = :cod_produto");
-        $this->db->bind(":cod_produto", $codeProduct);
+    public function verificarCodigoExistente($codMercadoria){
+        $this->db->query("SELECT cod_mercadoria FROM mercadorias WHERE cod_mercadoria = :cod_mercadoria");
+        $this->db->bind(":cod_mercadoria", $codMercadoria);
         $this->db->executa();
 
         return $this->db->resultado() ? true : false;

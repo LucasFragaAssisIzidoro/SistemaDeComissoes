@@ -2,31 +2,8 @@
 
 <head>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <style>
-        .container {
-            text-align: center;
-        }
-
-        .feature-box-1 {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 150px; /* Altura do box */
-            border: 1px solid #ccc; /* Adicionei uma borda para visualização */
-            margin-bottom: 20px;
-        }
-
-        .feature-box-1 .icon {
-            font-size: 60px;
-            margin-bottom: 10px;
-        }
-
-        .feature-box-1 h5 {
-            font-size: 18px;
-            margin: 0;
-        }
-    </style>
+    <script src="/reluisa/public/js/erros.js"></script>
+   
 <body>
     <?php echo Sessao::mensagem('estoque'); ?>
     <section class="container">
@@ -36,39 +13,40 @@
                 <div class="row">
                 <div class="col-sm-9 col-lg-3">
 
-                        <a href="#" data-toggle="modal" data-target="#addItemModal">
+                        <a href="#" data-toggle="modal" data-target="#adicionarMercadoria">
                             <div class="feature-box-1">
                                 <div class="icon">
                                 <i class="fa fa-archive"></i>
                                 </div>
                                 <div class="feature-content">
-                                    <h5>Cadastro de Produtos</h5>
+                                    <h5>Cadastro de Mercadoria</h5>
                                 </div>
                             </div>
                         </a>
 
-                        <!-- modal de cadastro de produto -->
+                        <!-- modal de cadastro de mercadoria -->
 
-                        <div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="addItemModalLabel"
+                        <div class="modal fade" id="adicionarMercadoria" tabindex="-1" role="dialog" aria-labelledby="addItemModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="addItemModalLabel">Adicionar Produto</h5>
+                                    <h5 class="modal-title">Adicionar Produto</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="<?=URL?>/estoques/cadastrarprod" method="post">
+                                <form action="<?=URL?>/estoques/cadastrarmercadoria" method="post">
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <label for="productcode">Código do produto</label>
-                                            <input type="text" class="form-control" id="codeproduct" name="codeproduct"
+                                            <label class="text-left">Código do produto</label>
+                                            <input type="text" class="form-control is-invalid float-right" id="cod_mercadoria" name="cod_mercadoria"
                                                 placeholder="Digite o código do produto" required>
+                                                <span class="invalid-feedback" id="mensagemErro">GENTE</span>
                                         </div>
                                         <div class="form-group">
                                             <label for="unit">Categoria</label>
-                                            <select name="category" id="category" class="form-control" required>
+                                            <select name="categoria_mercadoria" id="categoria_mercadoria" class="form-control" required>
                                                 <option value="" disabled selected>Selecione a categoria</option>
                                                 <option value="meia">meia</option>
                                                 <option value="cueca">cueca</option>
@@ -88,7 +66,7 @@
                         </div>
                     </div>
 
-                    <!-- fim modal de adicao de produto -->
+                    <!-- fim modal de adicao de mercadoria -->
 
                     </div>
                     <div class="col-sm-9 col-lg-3">

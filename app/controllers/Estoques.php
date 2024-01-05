@@ -1,33 +1,46 @@
 <?php
 
 class Estoques extends Controller{
+    public $estoqueModel;
+
     public function __construct(){
         $this->estoqueModel=$this->model('Estoque');
     }
     public function index(){
         $this->view('estoques/index');
     }
-    public function cadastrarprod(){
+    public function cadastrarmercadoria(){
         $formulario = filter_input_array(INPUT_POST);
     
         if (isset($formulario)) {
-            $codeProduct = trim($formulario['codeproduct']);
-            $category = trim($formulario['category']);
+            $codMercadoria = trim($formulario['cod_mercadoria']);
+            $categoriaMercadoria = trim($formulario['categoria_mercadoria']);
     
-            // Verifica se o código já existe no banco de dados
-            $codigoExistente = $this->estoqueModel->verificarCodigoExistente($codeProduct);
+            $codigoExistente = $this->estoqueModel->verificarCodigoExistente($codMercadoria);
     
             if ($codigoExistente) {
-                echo Sessao::mensagem('estoque', 'Este código de produto já está em uso!', 'alert alert-danger');
-                Url::redirecionar('estoques/index'); // Redireciona para página de formulário
-            } else {
-                // Se o código não existir, realiza o cadastro
+               http_response_code(400);
+               echo json_encode(['error' => 'Código em uso!']);
+               exit;
+
+            }elseif(!is_numeric($codMercadoria)){
+                http_response_code(400);
+                echo json_encode(['error' => 'Formato inválido!']);
+                exit;
+
+            }elseif(!is_string($categoriaMercadoria)){
+                http_response_code(400);
+                echo json_encode(['error' => 'Formato inválido!']);
+            }
+            
+            else {
+            
                 $dados = [
-                    'codeproduct' => $codeProduct,
-                    'category' => $category,
+                    'cod_mercadoria' => $codMercadoria,
+                    'categoria_mercadoria' => $categoriaMercadoria,
                 ];
     
-                if($this->estoqueModel->cadastrarprod($dados)){
+                if($this->estoqueModel->cadastrarmercadoria($dados)){
                     echo Sessao::mensagem('estoque', 'Produto cadastrado com sucesso!');
                     Url::redirecionar('estoques/index');
                 } else {
