@@ -40,21 +40,85 @@ class Estoques extends Controller{
                 ];
     
                 if($this->estoqueModel->cadastrarmercadoria($dados)){
-                    echo Sessao::mensagem('estoque', 'Produto cadastrado com sucesso!');
-                    Url::redirecionar('estoques/index');
+                    
                 } else {
                     die("Erro ao armazenar produto no banco de dados");
                 }
             }
         }
     }
-    public function entrada(){
-        $this->view('estoques/entrada');
+    public function cadastrarproduto(){
+        $formulario = filter_input_array(INPUT_POST);
+    
+        if (isset($formulario)) {
+            $codProduto = trim($formulario['codigo_produto']);
+            $nomeProduto = trim($formulario['nome_produto']);
+            $fornecedorProduto = trim($formulario['fornecedor_produto']);
+            $quantidadeProduto = trim($formulario['quantidade_produto']);;
+            $corProduto = trim($formulario['cor_produto']);;
+            $tamanhoProduto = trim($formulario['tamanho_produto']);;
+    
+            $codigoExistente = $this->estoqueModel->verificarCodigoExistente($codProduto);
+    
+            if (!$codigoExistente) {
+               http_response_code(400);
+               echo json_encode(['error' => 'Codigo nao cadastrado!']);
+               exit;
+
+            }elseif(!is_numeric($codProduto)){
+                http_response_code(400);
+                echo json_encode(['error' => 'Formato inválido!']);
+                exit;
+
+            }
+            elseif(!is_numeric($quantidadeProduto)){
+                http_response_code(400);
+                echo json_encode(['error' => 'Formato inválido!']);
+                exit;
+
+            }elseif(!is_string($corProduto)){
+                http_response_code(400);
+                echo json_encode(['error' => 'Formato inválido!']);
+                exit;
+
+            }elseif(!is_string($tamanhoProduto)){
+                http_response_code(400);
+                echo json_encode(['error' => 'Formato inválido!']);
+                exit;
+
+            }elseif(!is_string($fornecedorProduto)){
+                http_response_code(400);
+                echo json_encode(['error' => 'Formato inválido!']);
+                exit;
+
+            }else{
+            
+                $dados = [
+                    'cod_produto' => $codProduto,
+                    'fornecedor_produto' => $fornecedorProduto,
+                    'quantidade_produto' => $quantidadeProduto,
+                    'cor_produto' => $corProduto,
+                    'tamanho_produto' => $tamanhoProduto,
+                    'nome_produto' => $nomeProduto
+                ];
+    
+                if($this->estoqueModel->cadastrarproduto($dados)){
+                   
+                } else {
+                    die("Erro ao armazenar produto no banco de dados");
+                }
+            }
+        }
     }
     public function saida(){
         $this->view('estoques/saida');
     }
     public function ver(){
-        $this->view('estoques/ver');
+
+        $dados = [
+            "produto" => $this->estoqueModel->selecionarProdutos(),
+        ];
+        $this->view('estoques/ver', $dados);
+
     }
 }

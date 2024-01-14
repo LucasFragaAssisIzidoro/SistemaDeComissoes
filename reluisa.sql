@@ -25,19 +25,20 @@ create table vendedoras (
     data_fim_vinculo TIMESTAMP NULL
 );
 CREATE TABLE mercadorias (
-    id_mercadoria INT AUTO_INCREMENT PRIMARY KEY,
-    cod_mercadoria VARCHAR(255),
+    cod_mercadoria INT PRIMARY KEY UNIQUE,
     categoria_mercadoria VARCHAR(255)
 );
 
+
 CREATE TABLE produtos (
     id_produto INT AUTO_INCREMENT PRIMARY KEY,
-    id_mercadoria INT,
+    cod_mercadoria INT,
     id_fornecedor INT,
     quantidade_produto INT,
+    nome_produto varchar(255),
     cor_produto VARCHAR(255),
     tamanho_produto VARCHAR(255),
-    FOREIGN KEY (id_mercadoria) REFERENCES mercadorias(id_mercadoria),
+    FOREIGN KEY (cod_mercadoria) REFERENCES mercadorias(cod_mercadoria),
     FOREIGN KEY (id_fornecedor) REFERENCES fornecedores(id_fornecedor)
 );
 
