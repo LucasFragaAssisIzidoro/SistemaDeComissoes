@@ -35,9 +35,8 @@ CREATE TABLE produtos (
     cod_mercadoria INT,
     id_fornecedor INT,
     quantidade_produto INT,
-    nome_produto varchar(255),
-    cor_produto VARCHAR(255),
-    tamanho_produto VARCHAR(255),
+    nome_produto VARCHAR(255),
+    valor_produto DECIMAL(10,2),
     FOREIGN KEY (cod_mercadoria) REFERENCES mercadorias(cod_mercadoria),
     FOREIGN KEY (id_fornecedor) REFERENCES fornecedores(id_fornecedor)
 );

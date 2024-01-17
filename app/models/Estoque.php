@@ -26,13 +26,12 @@ class Estoque{
 
     //produto
     public function cadastrarproduto($dados){
-        $this->db->query("INSERT INTO produtos(cod_mercadoria, id_fornecedor, nome_produto, quantidade_produto, cor_produto, tamanho_produto) VALUES (:cod_mercadoria, :id_fornecedor, :nome_produto, :quantidade_produto, :cor_produto, :tamanho_produto)");
+        $this->db->query("INSERT INTO produtos(cod_mercadoria, id_fornecedor, nome_produto, quantidade_produto, valor_produto) VALUES (:cod_mercadoria, :id_fornecedor, :nome_produto, :quantidade_produto, :valor_produto)");
         $this->db->bind(":cod_mercadoria", $dados['cod_produto']);
         $this->db->bind(":id_fornecedor", $dados['fornecedor_produto']);
         $this->db->bind(":nome_produto", $dados['nome_produto']);
         $this->db->bind(":quantidade_produto", $dados['quantidade_produto']);
-        $this->db->bind(":cor_produto", $dados['cor_produto']);
-        $this->db->bind(":tamanho_produto", $dados['tamanho_produto']);
+        $this->db->bind("valor_produto", $dados['valor_produto']);
         if($this->db->executa()){
             return true;
         }else{
@@ -44,4 +43,18 @@ class Estoque{
         $this->db->executa();
         return $this->db->resultados();
     }
+    public function filtrarProdutos($filtroCodigo) {
+        $query = "SELECT * FROM produtos WHERE 1";
+    
+        if (!empty($filtroCodigo)) {
+            $query .= " AND cod_mercadoria LIKE :cod_mercadoria";
+            $this->db->bind(":cod_mercadoria", "$filtroCodigo");
+        }
+    
+        $this->db->query($query);
+        $this->db->executa();
+    
+        return $this->db->resultados();
+    }
+    
 }

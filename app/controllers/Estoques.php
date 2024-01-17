@@ -2,12 +2,18 @@
 
 class Estoques extends Controller{
     public $estoqueModel;
+    public $fornecedorModel;
 
     public function __construct(){
         $this->estoqueModel=$this->model('Estoque');
+        $this->fornecedorModel=$this->model('Fornecedor');
     }
     public function index(){
-        $this->view('estoques/index');
+
+        $dados = [
+            "fornecedores" => $this->fornecedorModel->selecionarFornecedores(),
+        ];
+        $this->view('estoques/index', $dados);
     }
     public function cadastrarmercadoria(){
         $formulario = filter_input_array(INPUT_POST);
@@ -54,9 +60,9 @@ class Estoques extends Controller{
             $codProduto = trim($formulario['codigo_produto']);
             $nomeProduto = trim($formulario['nome_produto']);
             $fornecedorProduto = trim($formulario['fornecedor_produto']);
-            $quantidadeProduto = trim($formulario['quantidade_produto']);;
-            $corProduto = trim($formulario['cor_produto']);;
-            $tamanhoProduto = trim($formulario['tamanho_produto']);;
+            $quantidadeProduto = trim($formulario['quantidade_produto']);
+            $valorProduto = $formulario['valor_produto'];
+            
     
             $codigoExistente = $this->estoqueModel->verificarCodigoExistente($codProduto);
     
@@ -76,16 +82,6 @@ class Estoques extends Controller{
                 echo json_encode(['error' => 'Formato inválido!']);
                 exit;
 
-            }elseif(!is_string($corProduto)){
-                http_response_code(400);
-                echo json_encode(['error' => 'Formato inválido!']);
-                exit;
-
-            }elseif(!is_string($tamanhoProduto)){
-                http_response_code(400);
-                echo json_encode(['error' => 'Formato inválido!']);
-                exit;
-
             }elseif(!is_string($fornecedorProduto)){
                 http_response_code(400);
                 echo json_encode(['error' => 'Formato inválido!']);
@@ -97,9 +93,8 @@ class Estoques extends Controller{
                     'cod_produto' => $codProduto,
                     'fornecedor_produto' => $fornecedorProduto,
                     'quantidade_produto' => $quantidadeProduto,
-                    'cor_produto' => $corProduto,
-                    'tamanho_produto' => $tamanhoProduto,
-                    'nome_produto' => $nomeProduto
+                    'nome_produto' => $nomeProduto,
+                    'valor_produto' => $valorProduto
                 ];
     
                 if($this->estoqueModel->cadastrarproduto($dados)){
@@ -117,8 +112,30 @@ class Estoques extends Controller{
 
         $dados = [
             "produto" => $this->estoqueModel->selecionarProdutos(),
+            "fornecedores" => $this->fornecedorModel->selecionarFornecedores(),
         ];
         $this->view('estoques/ver', $dados);
 
+    }
+    public function pesquisa(){
+        $formulario = filter_input_array(INPUT_POST);
+    
+        
+        echo "Dados do formulário recebidos: <pre>";
+        print_r($formulario);
+        echo "</pre>";
+    
+        if (isset($formulario)) {
+            $codProduto = trim($formulario['codigo_produto']);
+            $corProduto = trim($formulario['cor_produto']);
+            $tamanhoProduto = trim($formulario['tamanho_produto']);
+        }
+    
+        $dados = [
+            "produto" => $this->estoqueModel->filtrarProdutos($tamanhoProduto, $corProduto, $codProduto),
+            "fornecedores" => $this->fornecedorModel->selecionarFornecedores(),
+        ];
+    
+        $this->view('estoques/pesquisa', $dados);
     }
 }

@@ -68,7 +68,7 @@
 
                     </div>
                     <div class="col-sm-9 col-lg-3">
-                        <a  href="#" data-toggle="modal" data-target="#adicionarProduto">
+                        <a href="#" data-toggle="modal" data-target="#adicionarProduto">
                             <div class="feature-box-1">
                                 <div class="icon">
                                     <i class="fa fa-sign-in"></i>
@@ -90,7 +90,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="<?= URL ?>/estoques/cadastrarproduto "method="post" id="cadastrarProduto">
+                                <form action="<?= URL ?>/estoques/cadastrarproduto " method="post" id="cadastrarProduto">
                                     <div class="form-group px-4">
                                         <label for="codigo">Código:</label>
                                         <input type="text" class="form-control" id="codigo_produto" name="codigo_produto" required>
@@ -103,9 +103,9 @@
                                     </div>
 
                                     <div class="form-group  px-4">
-                                        <label for="cor">Cor:</label>
-                                        <input type="text" class="form-control" id="cor_produto" name="cor_produto" required>
-                                        <span class="invalid-feedback" id="mensagemErroCor"></span>
+                                        <label for="cor">Valor:</label>
+                                        <input type="money" class="form-control" id="valor_produto" name="valor_produto" required>
+                                        <span class="invalid-feedback" id="mensagemErroValor"></span>
                                     </div>
 
                                     <div class="form-group  px-4">
@@ -115,29 +115,14 @@
                                     </div>
 
                                     <div class="form-group px-4">
-                                        <label for="fornecedor">Selecione o tamanho:</label>
-                                        <select class="form-control" id="tamanho_produto" name="tamanho_produto" required>
-                                            <option value="" disabled selected>Selecione o tamanho</option>
-                                            <option value="P">P (Adulto)</option>
-                                            <option value="PP">PP (Adulto)</option>
-                                            <option value="P">M (Adulto)</option>
-                                            <option value="PP">G (Adulto)</option>
-                                            <option value="P">GG (Adulto)</option>
-                                            <option value="PP">XG (Adulto)</option>
-                                            <option value="P">P (Criança)</option>
-                                            <option value="PP">PP (Criança)</option>
-                                            <option value="P">M (Criança)</option>
-                                            <option value="PP">G (Criança)</option>
-                                            <option value="P">GG (Criança)</option>
-                                            <option value="PP">XG (Criança)</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group px-4">
                                         <label for="fornecedor">Selecione o Fornecedor:</label>
                                         <select class="form-control" id="fornecedor_produto" name="fornecedor_produto" required>
                                             <option value="" disabled selected>Selecione o fornecedor </option>
-                                            <option value="1"> fisico fitness</option>
+                                            <?php foreach ($dados["fornecedores"] as $fornecedor) : ?>
+                                                <option value="<?php echo $fornecedor->id_fornecedor ?>">
+                                                    <?= $fornecedor->nome_fornecedor ?>
+                                                </option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
 
