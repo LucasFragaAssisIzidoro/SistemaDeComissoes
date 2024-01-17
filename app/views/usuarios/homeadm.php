@@ -25,7 +25,7 @@
                         </a>
                     </div>
                     <div class="col-sm-6 col-lg-4">
-                        <a href="<?php echo URL ?>/usuarios/gerenciarturmas">
+                        <a href="<?php echo URL ?>/fornecedores/index">
                             <div class="feature-box-1">
 
                                 <div class="icon">
