@@ -10,12 +10,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/reluisa/public/js/edit.js"></script>
+    <script src="/reluisa/public/js/filter.js"></script>
 
 </head>
 
 <body>
     <div class="tab-content">
         <section class="container">
+        <?php echo Sessao::mensagem('produto');?>
 
 
             <button class="btn btn-primary mb-3" id="toggleFilterArea">Mostrar Filtros</button>
@@ -33,7 +35,6 @@
                 </form>
             </div>
 
-
             <table class="table table-bordered">
                 <thead class="thead-dark">
                     <tr>
@@ -45,7 +46,7 @@
                         <th scope="col" id="ac">Ações</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tabelaProdutos">
                     <?php foreach ($dados['produto'] as $produto) : ?>
 
                         <tr>
@@ -82,7 +83,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?= URL ?>/estoques/editarproduto " method="post" id="editarProduto">
+                    <form action="<?= URL ?>/estoques/editarProduto" method="post" id="editarProduto">
                         <div class="form-group px-4">
                             <label for="codigo">Código:</label>
                             <input type="text" class="form-control" id="codigo_produto" name="codigo_produto" required>
@@ -103,7 +104,7 @@
 
                         <div class="form-group  px-4">
                             <label for="tamanho">Valor:</label>
-                            <input type="number" class="form-control" id="valor_produto" name="valor_produto" required>
+                            <input type="decimal" class="form-control" id="valor_produto" name="valor_produto" required>
                             <span class="invalid-feedback" id="mensagemErroValor"></span>
                         </div>
 
@@ -132,6 +133,8 @@
     <!-- fim modal de edicao -->
 
     <!-- modal de exclusao -->
+    <?php foreach ($dados['produto'] as $produto) : ?>
+    <form method="post" action="<?=URL?>/estoques/deletar/<?=$produto->cod_mercadoria?>">
     <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -146,12 +149,14 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Deletar</button>
+                    <button type="submit" class="btn btn-danger" id="confirmDeleteBtn">Deletar</button>
                 </div>
             </div>
         </div>
         <!-- fim modal de exclusao -->
     </div>
+    </form>
+    <?php endforeach;?>
 </body>
 
 </html>

@@ -135,6 +135,8 @@
                         </div>
                     </div>
                     <!-- fim modal de entrada de produtos-->
+
+
                     <div class="col-sm-9 col-lg-3">
                         <a href="<?php echo URL ?>/estoques/ver">
                             <div class="feature-box-1">
@@ -148,7 +150,7 @@
                         </a>
                     </div>
                     <div class="col-sm-9 col-lg-3">
-                        <a href="<?php echo URL ?>/estoques/saida">
+                        <a href="#" data-toggle="modal" data-target="#saidaProduto">
                             <div class="feature-box-1">
                                 <div class="icon">
                                     <i class="fa fa-sign-out"></i>
@@ -159,6 +161,39 @@
                             </div>
                         </a>
                     </div>
+                    <!-- modal de saída de produtos-->
+                    <div class="modal fade" id="saidaProduto" tabindex="-1" role="dialog" aria-labelledby="addItemModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Saída Produtos</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="<?= URL ?>/estoques/saidaProduto" method="post" id="editarProduto">
+                                    <div class="form-group px-4">
+                                        <label for="codigo">Código:</label>
+                                        <input type="text" class="form-control" id="codigo_produto" name="codigo_produto" required>
+                                        <span class="invalid-feedback" id="mensagemErroCodigo"></span>
+                                    </div>
+                                   
+
+                                    <div class="form-group  px-4">
+                                        <label for="tamanho">Quantidade:</label>
+                                        <input type="number" class="form-control" id="quantidade_produto" name="quantidade_produto" required>
+                                        <span class="invalid-feedback" id="mensagemErroQtde"></span>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                        <button type="submit" class="btn btn-secondary" id="saveItem">Salvar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- fim modal de saída de produtos-->
                 </div>
             </div>
         </article>

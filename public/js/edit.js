@@ -1,4 +1,3 @@
-alert("lucas")
 $(document).ready(function(){
     $('.editButton').click(function(){
         var id = $(this).data("id");

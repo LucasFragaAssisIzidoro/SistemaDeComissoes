@@ -43,18 +43,48 @@ class Estoque{
         $this->db->executa();
         return $this->db->resultados();
     }
-    public function filtrarProdutos($filtroCodigo) {
-        $query = "SELECT * FROM produtos WHERE 1";
-    
-        if (!empty($filtroCodigo)) {
-            $query .= " AND cod_mercadoria LIKE :cod_mercadoria";
-            $this->db->bind(":cod_mercadoria", "$filtroCodigo");
-        }
-    
-        $this->db->query($query);
+    public function filtrarProdutos($codProduto) {
+        $this->db->query("SELECT * FROM produtos WHERE cod_mercadoria LIKE :codProduto");
+        $this->db->bind(':codProduto', "%$codProduto%");
         $this->db->executa();
-    
         return $this->db->resultados();
     }
-    
+    public function deletarProduto($idProduto){
+        $this->db->query("DELETE FROM PRODUTOS WHERE cod_mercadoria = :codMercadoria");
+        $this->db->bind(':codMercadoria', "$idProduto");
+        $this->db->executa();
+    }
+
+    public function editarProduto($dados){
+        $this->db->query("UPDATE produtos SET  id_fornecedor=:id_fornecedor, nome_produto=:nome_produto, quantidade_produto=:quantidade_produto, valor_produto=:valor_produto WHERE cod_mercadoria = :cod_mercadoria");
+        $this->db->bind(":id_fornecedor", $dados['fornecedor_produto']);
+        $this->db->bind(":nome_produto", $dados['nome_produto']);
+        $this->db->bind(":quantidade_produto", $dados['quantidade_produto']);
+        $this->db->bind(":valor_produto", $dados['valor_produto']);
+        $this->db->bind(":cod_mercadoria", $dados['codigo_produto']);
+        
+        if($this->db->executa()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function saidaProduto($dados){
+        $this->db->query("UPDATE produtos SET quantidade_produto=:quantidade_produto WHERE cod_mercadoria = :cod_mercadoria");
+        $this->db->bind(":quantidade_produto", $dados['quantidade_produto']);
+        $this->db->bind(":cod_mercadoria", $dados['cod_produto']);
+        
+        if($this->db->executa()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function encontrarQuantidade($codMercadoria){
+        $this->db->query('SELECT quantidade_produto FROM produtos WHERE cod_mercadoria = :cod_mercadoria' );
+        $this->db->bind(":cod_mercadoria", $codMercadoria);
+        $this->db->executa();
+        return $this->db->resultado();
+    }
+      
 }
