@@ -51,10 +51,11 @@
                         <tr>
                             <td><?php echo $produto->cod_mercadoria; ?></td>
                             <td><?php echo $produto->nome_produto; ?></td>
-                            <td><?php echo "R$".$produto->valor_produto; ?></td>                            <td><?php echo $produto->quantidade_produto; ?></td>
+                            <td><?php echo "R$".$produto->valor_produto; ?></td>                            
+                            <td><?php echo $produto->quantidade_produto; ?></td>
                             <td><?php echo $produto->id_fornecedor; ?></td>
                             <td>
-                                <a href="#" class="btn btn-warning btn-sm mr-2 editButton" data-toggle="modal" data-target="#editItemModal" data-id="<?= $produto->id_produto ?>" data-nome="<?= $produto->nome_produto ?>" data-codigo="<?= $produto->cod_mercadoria ?>" data-idfornecedor="<?= $produto->id_fornecedor ?>" data-tamanho="<?= $produto->tamanho_produto ?>" data-cor="<?= $produto->cor_produto ?>" data-quantidade="<?= $produto->quantidade_produto ?>">
+                                <a href="#" class="btn btn-warning btn-sm mr-2 editButton" data-toggle="modal" data-target="#editItemModal" data-id="<?= $produto->id_produto ?>" data-nome="<?= $produto->nome_produto ?>" data-codigo="<?= $produto->cod_mercadoria ?>" data-idfornecedor="<?= $produto->id_fornecedor ?>" data-valorprod="<?= $produto->valor_produto?>" data-quantidade="<?= $produto->quantidade_produto ?>">
                                     <i class="fas fa-edit"></i> Editar
                                 </a>
                                 <a href="#" class="btn btn-danger btn-sm deleteButton" data-id="<?= $produto->id_produto ?>" data-toggle="modal" data-target="#confirmDeleteModal">
@@ -95,34 +96,15 @@
                         </div>
 
                         <div class="form-group  px-4">
-                            <label for="cor">Cor:</label>
-                            <input type="text" class="form-control" id="cor_produto" name="cor_produto" required>
-                            <span class="invalid-feedback" id="mensagemErroCor"></span>
-                        </div>
-
-                        <div class="form-group  px-4">
                             <label for="tamanho">Quantidade:</label>
                             <input type="number" class="form-control" id="quantidade_produto" name="quantidade_produto" required>
                             <span class="invalid-feedback" id="mensagemErroQtde"></span>
                         </div>
 
-                        <div class="form-group px-4">
-                            <label for="fornecedor">Selecione o tamanho:</label>
-                            <select class="form-control" id="tamanho_produto" name="tamanho_produto" required>
-                                <option value="" disabled selected>Selecione o tamanho</option>
-                                <option value="P">P (Adulto)</option>
-                                <option value="PP">PP (Adulto)</option>
-                                <option value="P">M (Adulto)</option>
-                                <option value="PP">G (Adulto)</option>
-                                <option value="P">GG (Adulto)</option>
-                                <option value="PP">XG (Adulto)</option>
-                                <option value="P">P (Criança)</option>
-                                <option value="PP">PP (Criança)</option>
-                                <option value="P">M (Criança)</option>
-                                <option value="PP">G (Criança)</option>
-                                <option value="P">GG (Criança)</option>
-                                <option value="PP">XG (Criança)</option>
-                            </select>
+                        <div class="form-group  px-4">
+                            <label for="tamanho">Valor:</label>
+                            <input type="number" class="form-control" id="valor_produto" name="valor_produto" required>
+                            <span class="invalid-feedback" id="mensagemErroValor"></span>
                         </div>
 
                         <div class="form-group px-4">
