@@ -1,3 +1,4 @@
+alert("lucas")
 $(document).ready(function(){
     $('.editButton').click(function(){
         var id = $(this).data("id");
@@ -12,7 +13,6 @@ $(document).ready(function(){
         $('#fornecedor_produto').val(fornecedor);
         $('#valor_produto').val(valor);
         $('#id_produto').val(id);
-        alert(fornecedor)
     });
 
     $('#toggleFilterArea').click(function(){
