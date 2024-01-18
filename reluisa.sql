@@ -13,7 +13,8 @@ create table  fornecedores (
     id_fornecedor INT AUTO_INCREMENT PRIMARY KEY,
     nome_fornecedor VARCHAR(255),
     email_fornecedor VARCHAR(255) NULL,
-    telefone_fornecedor VARCHAR(255) NULL
+    telefone_fornecedor VARCHAR(255) NULL,
+    visivel INT DEFAULT 1
 );
 create table vendedoras (
     id_vendedora INT AUTO_INCREMENT PRIMARY KEY,
@@ -22,7 +23,8 @@ create table vendedoras (
     telefone_vendedora VARCHAR(255) NOT NULL,
     endereco_vendedora VARCHAR(255) NOT NULL,
     data_inicio_vinculo TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    data_fim_vinculo TIMESTAMP NULL
+    data_fim_vinculo TIMESTAMP NULL,
+    visivel INT DEFAULT 1
 );
 CREATE TABLE mercadorias (
     cod_mercadoria INT PRIMARY KEY UNIQUE,

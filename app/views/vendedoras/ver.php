@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/reluisa/public/js/edit2.js"></script>
+    <script src="/reluisa/public/js/edit3.js"></script>
 
 </head>
 
 <body>
     <div class="tab-content">
         <section class="container">
-        <?php echo Sessao::mensagem('fornecedor');?>
+        <?php echo Sessao::mensagem('vendedora');?>
 
             <table class="table table-bordered">
                 <thead class="thead-dark">
@@ -24,19 +24,21 @@
                         <th scope="col">Nome</th>
                         <th scope="col">Email</th>
                         <th scope="col">Telefone</th>
+                        <th scope="col">Endereço</th>
                         <th scope="col" id="ac">Ações</th>
                     </tr>
                 </thead>
                 <tbody id="tabelaVendedores">
                     
-                    <?php foreach ($dados['fornecedor'] as $fornecedor) : ?>
+                    <?php foreach ($dados['vendedora'] as $vendedora) : ?>
 
                         <tr>
-                            <td><?php echo $fornecedor->nome_fornecedor; ?></td>
-                            <td><?php echo $fornecedor->email_fornecedor; ?></td>
-                            <td><?php echo $fornecedor->telefone_fornecedor; ?></td>                            
+                            <td><?php echo $vendedora->nome_vendedora; ?></td>
+                            <td><?php echo $vendedora->email_vendedora; ?></td>
+                            <td><?php echo $vendedora->telefone_vendedora; ?></td> 
+                            <td><?php echo $vendedora->endereco_vendedora; ?></td>                            
                             <td>
-                                <a href="#" class="btn btn-warning btn-sm mr-2 editButton2" data-toggle="modal" data-target="#editItemModal" data-id="<?= $fornecedor->id_fornecedor ?>" data-nome="<?= $fornecedor->nome_fornecedor?>" data-email="<?= $fornecedor->email_fornecedor?>" data-telefone="<?php echo $fornecedor->telefone_fornecedor?>">
+                                <a href="#" class="btn btn-warning btn-sm mr-2 editButton3" data-toggle="modal" data-target="#editItemModal" data-id="<?= $vendedora->id_vendedora ?>" data-nome="<?= $vendedora->nome_vendedora?>" data-email="<?= $vendedora->email_vendedora?>" data-telefone="<?php echo $vendedora->telefone_vendedora?>" data-endereco="<?= $vendedora->endereco_vendedora?>">
                                     <i class="fas fa-edit"></i> Editar
                                 </a>
                                 <a href="#" class="btn btn-danger btn-sm deleteButton" data-toggle="modal" data-target="#confirmDeleteModal">
@@ -57,32 +59,36 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editItemModalLabel">Editar Fornecedor</h5>
+                    <h5 class="modal-title" id="editItemModalLabel">Editar Vendedora</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?= URL ?>/fornecedores/editar" method="post" id="editarProduto">
+                    <form action="<?= URL ?>/vendedoras/editar" method="post" id="editarProduto">
                         <div class="form-group  px-4">
                             <label for="nome">Nome:</label>
-                            <input type="text" class="form-control" id="nome_fornecedor" name="nome_fornecedor" required>
+                            <input type="text" class="form-control" id="nome" name="nome" required>
                             <span class="invalid-feedback" id="mensagemErroNome"></span>
                         </div>
 
                         <div class="form-group  px-4">
                             <label for="tamanho">Email:</label>
-                            <input type="email" class="form-control" id="email_fornecedor" name="email_fornecedor" required>
+                            <input type="email" class="form-control" id="email" name="email" required>
                         </div>
 
                         <div class="form-group  px-4">
-                            <input type="hidden" class="form-control" id="id_fornecedor" name="id_fornecedor" required>
+                            <input type="hidden" class="form-control" id="id" name="id" required>
                         </div>
 
 
                         <div class="form-group  px-4">
                             <label for="tamanho">Telefone:</label>
-                            <input type="text" class="form-control" id="telefone_fornecedor" name="telefone_fornecedor" required>
+                            <input type="text" class="form-control" id="telefone" name="telefone" required>
+                        </div>
+                        <div class="form-group  px-4">
+                            <label for="tamanho">Endereço</label>
+                            <input type="text" class="form-control" id="endereco" name="endereco" required>
                         </div>
 
                         <div class="modal-footer">
@@ -98,8 +104,8 @@
     <!-- fim modal de edicao -->
 
     <!-- modal de exclusao -->
-    <?php foreach ($dados['fornecedor'] as $fornecedor) : ?>
-    <form method="post" action="<?=URL?>/fornecedores/deletar/<?=$fornecedor->id_fornecedor?>">
+    <?php foreach ($dados['vendedora'] as $vendedora) : ?>
+    <form method="post" action="<?=URL?>/vendedoras/deletar/<?=$vendedora->id_vendedora?>">
     <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
