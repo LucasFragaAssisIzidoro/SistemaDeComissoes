@@ -51,7 +51,7 @@
                         </a>
                     </div>
                     <div class="col-sm-6 col-lg-4">
-                        <a href="<?= URL ?>/calendarios/calendarioAdm">
+                        <a href="<?= URL ?>/bolsas/index">
                             <div class="feature-box-1">
                                 <div class="icon">
                                     <i class="fa fa-calendar-o"></i>

@@ -43,6 +43,24 @@ CREATE TABLE produtos (
     FOREIGN KEY (id_fornecedor) REFERENCES fornecedores(id_fornecedor)
 );
 
+CREATE TABLE bolsas (
+    id_bolsa INT AUTO_INCREMENT PRIMARY KEY,
+    id_vendedora INT,
+    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    visivel INT DEFAULT 1,
+    statusbolsa VARCHAR(255) DEFAULT "aberta",
+    FOREIGN KEY (id_vendedora) REFERENCES vendedoras(id_vendedora)
+);
+
+CREATE TABLE itens_bolsa (
+    id_item INT AUTO_INCREMENT PRIMARY KEY,
+    id_bolsa INT,
+    cod_mercadoria INT,
+    quantidade INT,
+    FOREIGN KEY (id_bolsa) REFERENCES bolsas(id_bolsa),
+    FOREIGN KEY (cod_mercadoria) REFERENCES mercadorias(cod_mercadoria)
+);
+
 
 
 

@@ -29,7 +29,7 @@
 
                                 <li class="nav-item">
                                     <a href="<?php echo URL ?>/home">
-                                        reluisa
+                                        reluisa <?= $_SESSION['usuario_id']?>
                                     </a>
                                 </li>
 
@@ -48,10 +48,9 @@
                             <a class="nav-item active" href="<?php echo URL ?>/usuarios/sair">
                                 <img src="/reluisa/public/img/leave.png" alt="logo" style="width:40px; height:60%;">
                             </a>
-                             <a class="nav-item active" href="<?php echo URL ?>/usuarios/editarusuario">
-                <img src="/reluisa/public/img/configuracoes.png" alt="logo"
-                    style="width:40px; height:60%; margin-left:5px;">
-            </a> 
+                            <a class="nav-item active" href="<?php echo URL ?>/usuarios/editar/">
+                                <img src="/reluisa/public/img/configuracoes.png" alt="logo" style="width:40px; height:60%; margin-left:5px;">
+                             </a> 
                         </li>
                     </ul>
                     <!-- Pra poder dar espaço p  carroussel, é gambiarra mas tento ver um jeito melhor dps-->
