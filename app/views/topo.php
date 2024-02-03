@@ -29,8 +29,7 @@
 
                                 <li class="nav-item">
                                     <a href="<?php echo URL ?>/home">
-                                        <img src="/AgroInv/public/img/logoAgroInv.png" alt="logo"
-                                            style="width:80px; height:60%;">
+                                        reluisa
                                     </a>
                                 </li>
 
@@ -47,7 +46,7 @@
                         <li class="nav-item">
 
                             <a class="nav-item active" href="<?php echo URL ?>/usuarios/sair">
-                                <img src="/AgroInv/public/img/leave.png" alt="logo" style="width:40px; height:60%;">
+                                <img src="/reluisa/public/img/leave.png" alt="logo" style="width:40px; height:60%;">
                             </a>
                             <!-- <a class="nav-item active" href="<?php echo URL ?>/usuarios/editarusuario">
                 <img src="/AgroInv/public/img/configuracoes.png" alt="logo"
@@ -71,7 +70,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-sm navbar-light">
                 <a href="<?php echo URL ?>" class="navbar-brand">
-                    <img src="/AgroInv/public/img/if_logo.png" width="130" height="50%" style="margin-top:5px;" />
+                    reluisa
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
