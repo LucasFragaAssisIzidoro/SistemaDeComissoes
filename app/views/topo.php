@@ -48,10 +48,10 @@
                             <a class="nav-item active" href="<?php echo URL ?>/usuarios/sair">
                                 <img src="/reluisa/public/img/leave.png" alt="logo" style="width:40px; height:60%;">
                             </a>
-                            <!-- <a class="nav-item active" href="<?php echo URL ?>/usuarios/editarusuario">
-                <img src="/AgroInv/public/img/configuracoes.png" alt="logo"
+                             <a class="nav-item active" href="<?php echo URL ?>/usuarios/editarusuario">
+                <img src="/reluisa/public/img/configuracoes.png" alt="logo"
                     style="width:40px; height:60%; margin-left:5px;">
-            </a> -->
+            </a> 
                         </li>
                     </ul>
                     <!-- Pra poder dar espaço p  carroussel, é gambiarra mas tento ver um jeito melhor dps-->
