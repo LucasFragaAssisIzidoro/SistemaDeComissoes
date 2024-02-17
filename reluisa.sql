@@ -47,8 +47,10 @@ CREATE TABLE bolsas (
     id_bolsa INT AUTO_INCREMENT PRIMARY KEY,
     id_vendedora INT,
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_vencimento TIMESTAMP, 
     visivel INT DEFAULT 1,
-    statusbolsa VARCHAR(255) DEFAULT "aberta",
+    statusbolsa VARCHAR(255) DEFAULT "Aberta",
+    nome_vendedora VARCHAR(255),
     FOREIGN KEY (id_vendedora) REFERENCES vendedoras(id_vendedora)
 );
 
@@ -57,6 +59,7 @@ CREATE TABLE itens_bolsa (
     id_bolsa INT,
     cod_mercadoria INT,
     quantidade INT,
+    valor_produto DECIMAL(10,2),
     FOREIGN KEY (id_bolsa) REFERENCES bolsas(id_bolsa),
     FOREIGN KEY (cod_mercadoria) REFERENCES mercadorias(cod_mercadoria)
 );
