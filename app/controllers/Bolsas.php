@@ -25,7 +25,7 @@ class Bolsas extends Controller{
         $idVendedora = trim($formulario['vendedora']);
         $nomeVendedora = trim($formulario['nome']);
         $dataVencimento = trim($formulario['data_vencimento']);
-
+        
         $dadosBolsa = [
             'id' => $idVendedora,
             'data'=>$dataVencimento,
@@ -37,10 +37,12 @@ class Bolsas extends Controller{
             if (strpos($chave, 'codigo_') === 0) {
                 $indice = substr($chave, strrpos($chave, '_') + 1);
                 if (isset($formulario['quantidade_' . $indice])) {
+                    $valorItem = $this->bolsasModel->buscarValorPorCodigo($valor);
                     $dadosItem = [
                         'id_bolsa'=> $idBolsa,
                         'cod_mercadoria' => $valor,
-                        'quantidade' => $formulario['quantidade_' . $indice]
+                        'quantidade' => $formulario['quantidade_' . $indice],
+                        'valor_item' => $valorItem,
                     ];
                     // Chama a função para cadastrar um item na bolsa
                     $this->bolsasModel->cadastrarItens($dadosItem);

@@ -80,6 +80,17 @@ class Estoque{
             return false;
         }
     }
+    public function entradaProduto($dados){
+        $this->db->query("UPDATE produtos SET quantidade_produto=:quantidade_produto WHERE cod_mercadoria = :cod_mercadoria");
+        $this->db->bind(":quantidade_produto", $dados['quantidade_produto']);
+        $this->db->bind(":cod_mercadoria", $dados['cod_produto']);
+        
+        if($this->db->executa()){
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function encontrarQuantidade($codMercadoria){
         $this->db->query('SELECT quantidade_produto FROM produtos WHERE cod_mercadoria = :cod_mercadoria' );
         $this->db->bind(":cod_mercadoria", $codMercadoria);

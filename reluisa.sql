@@ -27,8 +27,7 @@ create table vendedoras (
     visivel INT DEFAULT 1
 );
 CREATE TABLE mercadorias (
-    cod_mercadoria INT PRIMARY KEY UNIQUE,
-    categoria_mercadoria VARCHAR(255)
+    cod_mercadoria INT PRIMARY KEY UNIQUE
 );
 
 
@@ -63,6 +62,8 @@ CREATE TABLE itens_bolsa (
     FOREIGN KEY (id_bolsa) REFERENCES bolsas(id_bolsa),
     FOREIGN KEY (cod_mercadoria) REFERENCES mercadorias(cod_mercadoria)
 );
+
+
 
 
 

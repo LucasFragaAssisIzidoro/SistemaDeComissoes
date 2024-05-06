@@ -54,6 +54,7 @@ class Estoques extends Controller{
                 }
             }
         }
+       
     }
     public function cadastrarproduto(){
         $formulario = filter_input_array(INPUT_POST);
@@ -106,6 +107,7 @@ class Estoques extends Controller{
                 }
             }
         }
+        $this->view('estoques/cadastrarprodutos', $dados);
     }
     public function saida(){
         $this->view('estoques/saida');
@@ -239,6 +241,54 @@ class Estoques extends Controller{
                 if($this->estoqueModel->saidaProduto($dados)){
                     Url::redirecionar('estoques/ver');
                     Sessao::mensagem('produto', 'Saída debitada com sucesso!');
+                } else {
+                    die("Erro ao armazenar produto no banco de dados");
+                }
+            }
+        }
+    }
+    public function entradaProduto(){
+        $formulario = filter_input_array(INPUT_POST);
+    
+        if (isset($formulario)) {
+            $codProduto = trim($formulario['codigo_produto']);
+            $quantidadeProduto = trim($formulario['quantidade_produto']);
+            $quantidadeAtual = $this->estoqueModel->encontrarQuantidade($codProduto)->quantidade_produto;
+            $codigoExistente = $this->estoqueModel->verificarCodigoExistente($codProduto);
+            $quantidadeAtual2 = intval($quantidadeAtual);
+            $quantidadeProduto2 = intval($quantidadeProduto);
+            var_dump($quantidadeAtual2);
+            echo "-------";
+            var_dump($quantidadeProduto2);
+            
+
+            $valorDebitado = $quantidadeAtual2 + $quantidadeProduto2;
+            if (!$codigoExistente) {
+               http_response_code(400);
+               echo json_encode(['error' => 'Codigo nao cadastrado!']);
+               exit;
+
+            }elseif(!is_numeric($codProduto)){
+                http_response_code(400);
+                echo json_encode(['error' => 'Formato inválido!']);
+                exit;
+
+            }
+            elseif(!is_numeric($quantidadeProduto)){
+                http_response_code(400);
+                echo json_encode(['error' => 'Formato inválido!']);
+                exit;
+
+            }else{
+            
+                $dados = [
+                    'cod_produto' => $codProduto,
+                    'quantidade_produto' => $valorDebitado,
+                ];
+    
+                if($this->estoqueModel->saidaProduto($dados)){
+                    Url::redirecionar('estoques/ver');
+                    Sessao::mensagem('produto', 'Entrada adicionada com sucesso!');
                 } else {
                     die("Erro ao armazenar produto no banco de dados");
                 }

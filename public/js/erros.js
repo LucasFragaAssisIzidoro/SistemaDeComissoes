@@ -54,7 +54,7 @@ $(document).ready(function() {
                 $('#mensagemErroNome').text('Houve um erro no processo, verifique os formato digitado, lembre-se que deve ser texto!');
                 $('#mensagemErroQtde').text('Houve um erro no processo, verifique os formato digitado, lembre-se que deve ser númerico!');
                 $('#mensagemErroCor').text('Houve um erro no processo, verifique os formato digitado, lembre-se que deve ser texto!');
-                console.error('Erro inesperado:', errorThrown);
+                console.log('Erro inesperado:', errorThrown);
             }
         });
     });

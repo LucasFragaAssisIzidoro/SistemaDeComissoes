@@ -68,14 +68,14 @@
                                 <input type="hidden" id="nome" name="nome" value="">
 
                                 <div class="form-group row px-4">
-                                    <div class="col">
+                                    <!--<div class="col">
                                         <label for="codigo">Código:</label>
                                         <input type="number" class="form-control form-control-sm" id="codigo" name="codigo" required>
                                     </div>
                                     <div class="col">
                                         <label for="quantidade">Quantidade:</label>
                                         <input type="number" class="form-control form-control-sm" id="quantidade" name="quantidade" required>
-                                    </div>
+                                    </div>-->
                                     <div class="col">
                                         <input type="button" class="btn btn-secondary" id="adicionarCampo" name="adicionarCampo" value="+">
                                     </div>

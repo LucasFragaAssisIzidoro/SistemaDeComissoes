@@ -23,7 +23,7 @@
               <tr>
                 <td><?= $itens->cod_mercadoria?></td>
                 <td><?= $itens->quantidade?></td>
-                <td>R$199,99</td>
+                <td>R$<?=$itens->valor_produto?></td>
               </tr>
             <?php endforeach;?>
           </tbody>
